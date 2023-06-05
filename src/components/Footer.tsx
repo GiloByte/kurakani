@@ -2,15 +2,14 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="flex flex-wrap justify-center items-center px-36 mb-5">
-      <div>
+    <div className="flex justify-center items-center px-5 mb-5 lg:px-36">
+      <div className="w-full">
         <span className="font-semibold">© Meta 2023. </span>
         <span className="font-light">
           The Apple and Google Play logos are trademarks of their respective
           owners.
         </span>
       </div>
-      <div></div>
     </div>
   );
 }

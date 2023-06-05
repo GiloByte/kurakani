@@ -6,9 +6,6 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    fontFamily: {
-      calibre: ["Calibre"],
-    },
     extend: {
       colors: {
         primary: "#0a7cff",

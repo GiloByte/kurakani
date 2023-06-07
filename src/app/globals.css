@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+input {
+    font-family: Arial, Helvetica, sans-serif;
+}

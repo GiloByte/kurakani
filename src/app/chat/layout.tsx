@@ -1,6 +1,6 @@
-"use client";
 import RoomSideBar from "@/components/Room/RoomSideBar";
 import RoomProvider from "@/contexts/RoomContext";
+import SocketProvider from "@/contexts/SocketContext";
 
 export default function RoomLayout({
   children,
@@ -9,12 +9,12 @@ export default function RoomLayout({
 }) {
   return (
     <RoomProvider>
-      <div className="flex h-screen">
-        <RoomSideBar />
-        {/* <div className="h-screen"></div> */}
-        {children}
-        {/* <div className='w-1/4 h-screen border border-l-2'></div> */}
-      </div>
+      <SocketProvider>
+        <div className="flex h-screen">
+          <RoomSideBar />
+          {children}
+        </div>
+      </SocketProvider>
     </RoomProvider>
   );
 }

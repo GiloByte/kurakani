@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function RoomCard({ room }: { room: IRoom }) {
+function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
   return (
     <Link href={`chat/${room.id}`} className="flex gap-3 items-center p-2">
       <div>
@@ -16,8 +16,8 @@ function RoomCard({ room }: { room: IRoom }) {
         />
       </div>
       <div>
-        <p className="text-lg font-medium">{room.title}</p>
-        <p className="text-sm text-slate-400">Recent message</p>
+        <p className="text-base font-medium">{room.title}</p>
+        <p className="text-sm text-slate-400">{users.length}</p>
       </div>
     </Link>
   );

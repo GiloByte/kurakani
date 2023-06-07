@@ -21,7 +21,7 @@ export default function RoomProvider({
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    async function fetchRooms() {
+    async function fetchRooms(): Promise<void> {
       const response = await fetch(BASE_URL + "rooms");
       const rooms = await response.json();
       setRooms(rooms);
@@ -29,6 +29,7 @@ export default function RoomProvider({
     fetchRooms();
   }, []);
 
-  const value = { rooms };
-  return <RoomContext.Provider value={value}>{children}</RoomContext.Provider>;
+  return (
+    <RoomContext.Provider value={{ rooms }}>{children}</RoomContext.Provider>
+  );
 }

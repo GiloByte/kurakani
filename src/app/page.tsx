@@ -1,7 +1,7 @@
-import AppStores from "@/components/AppStores";
-import Footer from "@/components/Footer";
-import LoginForm from "@/components/LoginForm";
-import Navbar from "@/components/Navbar";
+import AppStores from "@/components/Home/AppStores";
+import Footer from "@/components/Home/Footer";
+import LoginForm from "@/components/Home/LoginForm";
+import Navbar from "@/components/Home/Navbar";
 
 export default function Home() {
   return (

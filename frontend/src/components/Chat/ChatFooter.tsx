@@ -14,7 +14,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
     setMessage(e.target.value);
   };
 
-  const handleSendMessage = (e: any) => {
+  const handleSendMessage = (e: any, message: string) => {
     e.preventDefault();
     if (message.trim()) {
       socket?.emit("send_message", {
@@ -40,7 +40,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
           size={20}
           className="cursor-pointer absolute top-[6px] right-2 text-primary"
         />
-        <form onSubmit={handleSendMessage}>
+        <form onSubmit={(e) => handleSendMessage(e, message)}>
           <input
             type="text"
             value={message}
@@ -51,12 +51,16 @@ function ChatFooter({ roomId }: { roomId: string }) {
         </form>
       </div>
       {message.length === 0 ? (
-        <AiFillLike size={28} className="cursor-pointer text-primary" />
+        <AiFillLike
+          size={28}
+          className="cursor-pointer text-primary"
+          onClick={(e) => handleSendMessage(e, "👍")}
+        />
       ) : (
         <IoMdSend
           size={28}
           className="cursor-pointer text-primary"
-          onClick={handleSendMessage}
+          onClick={(e) => handleSendMessage(e, message)}
         />
       )}
     </div>

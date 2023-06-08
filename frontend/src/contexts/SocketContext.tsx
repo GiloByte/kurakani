@@ -1,8 +1,8 @@
 "use client";
 import ISocketContext from "@/interfaces/ISocketContext";
 import { BASE_URL } from "@/utils/constants";
-import { createContext, useContext, useEffect, useState } from "react";
-import socketIO from "socket.io-client";
+import { createContext, useContext, useState } from "react";
+import * as socketIO from "socket.io-client";
 
 const intialData: ISocketContext = {
   socket: undefined,
@@ -24,7 +24,7 @@ export default function SocketProvider({
   const socket = socketIO.connect(BASE_URL);
 
   socket?.on("users_response", (data: any) => setRoomUsers(data));
-  
+
   return (
     <SocketContext.Provider value={{ socket, roomUsers }}>
       {children}

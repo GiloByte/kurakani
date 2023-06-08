@@ -1,3 +1,5 @@
+import IMessage from "./IMessage";
+
 export default interface IMessageContext {
-  messages: { string?: string[] | undefined };
+  messages: { [key: string]: IMessage[] };
 }

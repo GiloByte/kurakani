@@ -1,6 +1,6 @@
 "use client";
 import IMessageContext from "@/interfaces/IMessageContext";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { useSocket } from "./SocketContext";
 import IMessage from "@/interfaces/IMessage";
 
@@ -19,14 +19,14 @@ export default function MessageProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [messages, setMessages] = useState({});
+  const [messages, setMessages] = useState<{ [key: string]: IMessage[] }>({});
   const { socket } = useSocket();
 
   socket?.on("receive_message", (data: IMessage) => {
     let new_messages = { ...messages };
     if (new_messages[data.roomId]) new_messages[data.roomId].push(data);
     else new_messages[data.roomId] = [data];
-    console.log(new_messages)
+    console.log(new_messages);
     setMessages(new_messages);
   });
 

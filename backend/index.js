@@ -1,53 +1,51 @@
 const express = require("express");
 const app = express();
-const PORT = 4000;
-
-const http = require("http").Server(app);
+const http = require("http");
 const cors = require("cors");
+const { Server } = require("socket.io");
+app.use(cors());
 
-const socketIO = require("socket.io")(http, {
+const server = http.createServer(app);
+
+const io = new Server(server, {
   cors: {
     origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
   },
 });
 
-app.use(cors());
+io.on("connection", (socket) => {
+  console.log(`User Connected: ${socket.id}`);
 
-let rooms = {};
-
-socketIO.on("connection", (socket) => {
   socket.on("join_room", (roomId) => {
     socket.join(roomId);
-    if (rooms[roomId]) rooms[roomId].push(socket.id);
-    else rooms[roomId] = [socket.id];
     console.log(`User with ID: ${socket.id} joined room: ${roomId}`);
-    socketIO.emit("users_response", rooms);
+  });
+
+  socket.on("send_message", (data) => {
+    io.emit("receive_message", data);
+  });
+
+  socket.on("leave_all_rooms", (rooms) => {
+    rooms.forEach((room) => {
+      socket.leave(room.id);
+    });
   });
 
   socket.on("disconnect", () => {
-    for (const [roomId, users] of Object.entries(rooms)) {
-      users.filter((user) => user.socketID !== socket.id);
-      rooms[roomId] = users;
-    }
-    socketIO.emit("users_response", rooms);
-  });
-});
-
-app.get("/api", (req, res) => {
-  res.json({
-    message: "Hello world",
+    console.log("User Disconnected", socket.id);
   });
 });
 
 app.get("/rooms", (req, res) => {
   const ROOMS = [
     {
-      title: "Kritesh Timsina",
+      title: "Global Chatroom",
       id: "1",
       imageUrl: "https://kriteshtimsina.com.np/assets/kritesh-057690bd.jpg",
     },
     {
-      title: "Shreedesh Niroula",
+      title: "Nepali Guys",
       id: "2",
       imageUrl: "https://shreedeshniroula.com.np/images/profile1.jpg",
     },
@@ -55,6 +53,6 @@ app.get("/rooms", (req, res) => {
   res.json(ROOMS);
 });
 
-http.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
+server.listen(4000, () => {
+  console.log("SERVER RUNNING");
 });

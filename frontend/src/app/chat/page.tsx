@@ -1,8 +1,4 @@
-"use client";
 import React from "react";
-import socketIO from "socket.io-client";
-
-const socket = socketIO.connect("http://localhost:4000");
 
 function page() {
   return (

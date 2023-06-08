@@ -1,3 +1,4 @@
+import UserProvider from "@/contexts/UserContext";
 import "./globals.css";
 import localFont from "next/font/local";
 
@@ -23,7 +24,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={calibre.className}>{children}</body>
+      <UserProvider>
+        <body className={calibre.className}>{children}</body>
+      </UserProvider>
     </html>
   );
 }

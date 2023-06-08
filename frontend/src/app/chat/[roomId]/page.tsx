@@ -4,10 +4,9 @@ import ChatFooter from "@/components/Chat/ChatFooter";
 import ChatHeader from "@/components/Chat/ChatHeader";
 import { useSocket } from "@/contexts/SocketContext";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 function page() {
-  const [messages, setMessages] = useState([]);
   const { roomId } = useParams();
   const { socket } = useSocket();
 
@@ -18,8 +17,8 @@ function page() {
   return (
     <div className="flex flex-col w-full h-screen">
       <ChatHeader roomId={roomId} />
-      <ChatBody />
-      <ChatFooter />
+      <ChatBody roomId={roomId} />
+      <ChatFooter roomId={roomId} />
     </div>
   );
 }

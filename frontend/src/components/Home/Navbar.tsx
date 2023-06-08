@@ -33,7 +33,7 @@ function Navbar() {
         <AiOutlineMenu size={30} />
       </div>
       {navbarActive && (
-        <div className="absolute top-[100px] w-screen h-screen">kaalo</div>
+        <div className="absolute top-[100px] w-screen h-screen"></div>
       )}
     </div>
   );

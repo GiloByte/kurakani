@@ -15,6 +15,7 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
+  socket.removeAllListeners();
   console.log(`User Connected: ${socket.id}`);
 
   socket.on("join_room", (roomId) => {
@@ -24,12 +25,6 @@ io.on("connection", (socket) => {
 
   socket.on("send_message", (data) => {
     io.emit("receive_message", data);
-  });
-
-  socket.on("leave_all_rooms", (rooms) => {
-    rooms.forEach((room) => {
-      socket.leave(room.id);
-    });
   });
 
   socket.on("disconnect", () => {

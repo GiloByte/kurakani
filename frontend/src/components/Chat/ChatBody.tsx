@@ -1,12 +1,12 @@
 "use client";
-import { useMessage } from "@/contexts/MessageContext";
+import { useSocket } from "@/contexts/SocketContext";
 import { useUser } from "@/contexts/UserContext";
 import React from "react";
 
 function ChatBody({ roomId }: { roomId: string }) {
-  const { messages } = useMessage();
+  const { messages } = useSocket();
   const { uuid } = useUser();
-  console.log(messages);
+
   return (
     <div className="basis-[85%]">
       {messages[roomId]?.map((message: any, index: number) =>

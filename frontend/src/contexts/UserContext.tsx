@@ -8,6 +8,8 @@ const intialData: IUserContext = {
   uuid: "",
   setUsername: () => {},
   setUuid: () => {},
+  joinedRooms: [],
+  setJoinedRooms: () => {},
 };
 
 const UserContext = createContext<IUserContext>(intialData);
@@ -23,9 +25,19 @@ export default function UserProvider({
 }) {
   const [username, setUsername] = useState<string>("");
   const [uuid, setUuid] = useState<string>("");
+  const [joinedRooms, setJoinedRooms] = useState<string[]>([]);
 
   return (
-    <UserContext.Provider value={{ username, setUsername, uuid, setUuid }}>
+    <UserContext.Provider
+      value={{
+        username,
+        setUsername,
+        uuid,
+        setUuid,
+        joinedRooms,
+        setJoinedRooms,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

@@ -1,5 +1,4 @@
 import RoomSideBar from "@/components/Room/RoomSideBar";
-import MessageProvider from "@/contexts/MessageContext";
 import RoomProvider from "@/contexts/RoomContext";
 import SocketProvider from "@/contexts/SocketContext";
 
@@ -11,12 +10,10 @@ export default function RoomLayout({
   return (
     <RoomProvider>
       <SocketProvider>
-        <MessageProvider>
-          <div className="flex h-screen">
-            <RoomSideBar />
-            {children}
-          </div>
-        </MessageProvider>
+        <div className="flex h-screen">
+          <RoomSideBar />
+          {children}
+        </div>
       </SocketProvider>
     </RoomProvider>
   );

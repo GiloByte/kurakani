@@ -17,7 +17,9 @@ function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
       </div>
       <div>
         <p className="text-base font-medium">{room.title}</p>
-        <p className="text-sm text-slate-400">{users.length}</p>
+        <p className="text-sm text-slate-400">
+          <span className="text-xs">🟢</span> {users.length} online
+        </p>
       </div>
     </Link>
   );

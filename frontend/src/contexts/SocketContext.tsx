@@ -30,12 +30,12 @@ export default function SocketProvider({
     let socket = socketIO.connect(BASE_URL);
     socket.on("receive_message", (data: IMessage) => {
       setMessages((prev) => {
-        let new_messages = { ...prev };
-        if (new_messages[data.roomId]) new_messages[data.roomId].push(data);
-        else new_messages[data.roomId] = [data];
-        return new_messages;
+        const newMessages = { ...prev };
+        newMessages[data.roomId] = [...(newMessages[data.roomId] ?? []), data];
+        return newMessages;
       });
     });
+    socket.on("users_response", (data) => setRoomUsers(data));
     setSocket(socket);
   }, []);
 

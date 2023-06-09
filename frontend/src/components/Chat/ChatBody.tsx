@@ -1,14 +1,19 @@
 "use client";
 import { useSocket } from "@/contexts/SocketContext";
 import { useUser } from "@/contexts/UserContext";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 function ChatBody({ roomId }: { roomId: string }) {
+  const lastMessageRef = useRef<HTMLDivElement>(null);
   const { messages } = useSocket();
   const { uuid } = useUser();
 
+  useEffect(() => {
+    lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
-    <div className="basis-[85%]">
+    <div className="basis-[85%] overflow-y-scroll">
       {messages[roomId]?.map((message: any, index: number) =>
         message.id === uuid ? (
           <div className="message__chats" key={index}>
@@ -26,6 +31,7 @@ function ChatBody({ roomId }: { roomId: string }) {
           </div>
         )
       )}
+      <div ref={lastMessageRef} />
     </div>
   );
 }

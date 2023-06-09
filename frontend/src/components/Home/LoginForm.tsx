@@ -24,7 +24,7 @@ function LoginForm() {
       <div className="flex flex-col gap-3">
         <input
           type="text"
-          className="px-4 py-2 w-80 h-9 bg-gray-100 rounded-full focus:outline-none focus:border focus:border-primary focus:bg-gray-50 focus:placeholder-gray-400/60"
+          className="px-4 py-2 w-80 h-9 bg-gray-100 rounded-full focus:outline-none focus:border focus:border-primary focus:bg-gray-50 focus:placeholder-gray-400/60 placeholder:text-sm"
           placeholder="Display Name"
           onChange={handleInputChange}
           minLength={3}
@@ -32,7 +32,7 @@ function LoginForm() {
           required={true}
         />
         <div className="flex gap-2 p-2">
-          <input type="checkbox" className="w-4 h-4" />
+          <input type="checkbox" className="w-4 h-4 text-white accent-primary" />
           <p className="font-light">Keep me signed in</p>
         </div>
       </div>

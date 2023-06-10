@@ -1,14 +1,20 @@
 "use client";
 import { useRoom } from "@/contexts/RoomContext";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { v4 as uuidv4 } from "uuid";
+import Button from "../shared/Button";
 
 function AddRoomPanel({ hideAddRoomPanel }: any) {
   const [title, setTitle] = useState<string>("");
   const [id, setId] = useState<string>("");
   const { myRooms, setMyRooms } = useRoom();
   const router = useRouter();
+
+  useEffect(() => {
+    setId(uuidv4());
+  }, []);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -69,12 +75,7 @@ function AddRoomPanel({ hideAddRoomPanel }: any) {
                 required={true}
               />
             </div>
-            <button
-              type="submit"
-              className="px-5 pt-1 h-10 text-lg font-bold text-white rounded-full bg-primary hover:bg-secondary"
-            >
-              Join Room
-            </button>
+            <Button text="Join Room" />
           </form>
         </div>
       </div>

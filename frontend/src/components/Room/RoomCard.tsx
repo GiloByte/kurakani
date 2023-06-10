@@ -37,7 +37,7 @@ function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
           />
         )}
       </div>
-      <div>
+      <div className="hidden sm:block">
         <p className="font-medium line-clamp-1">{room.title}</p>
         <p className="text-sm text-slate-400">
           <span className="text-xs">🟢</span> {users.length} online

@@ -2,6 +2,7 @@
 import { useUser } from "@/contexts/UserContext";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Button from "../shared/Button";
 
 function LoginForm() {
   const [name, setName] = useState<string>();
@@ -35,9 +36,7 @@ function LoginForm() {
         </div> */}
       </div>
       <div className="flex gap-5 items-center">
-        <button className="px-5 pt-1 h-10 text-lg font-bold text-white rounded-full bg-primary hover:bg-secondary">
-          Start Kurakani
-        </button>
+        <Button text="Start Kurakani" />
       </div>
     </form>
   );

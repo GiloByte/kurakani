@@ -15,6 +15,22 @@ module.exports = {
         gradient:
           "linear-gradient(90deg, #6C63FF 0%, #C100D4 50%, #82ECEE 100%)",
       },
+      animation: {
+        popup: "popup ease-in-out forwards 3s",
+      },
+      keyframes: {
+        popup: {
+          "0%": {
+            opacity: 1,
+          },
+          "50%": {
+            opacity: 1,
+          },
+          "100%": {
+            opacity: 0,
+          },
+        },
+      },
     },
   },
   plugins: [],

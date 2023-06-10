@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { v4 as uuidv4 } from "uuid";
-import Button from "../shared/Button";
 
 function AddRoomPanel({ hideAddRoomPanel }: any) {
   const [title, setTitle] = useState<string>("");
@@ -75,7 +74,9 @@ function AddRoomPanel({ hideAddRoomPanel }: any) {
                 required={true}
               />
             </div>
-            <Button text="Join Room" />
+            <button type="submit" className="btn">
+              Join Room
+            </button>
           </form>
         </div>
       </div>

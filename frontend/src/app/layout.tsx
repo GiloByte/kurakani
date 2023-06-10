@@ -1,6 +1,7 @@
 import UserProvider from "@/contexts/UserContext";
 import "./globals.css";
 import localFont from "next/font/local";
+import { Metadata } from "next";
 
 const calibre = localFont({
   src: [
@@ -12,9 +13,10 @@ const calibre = localFont({
   ],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Kurakani",
   description: "kurakani - the best way to chat",
+  icons: "/images/logo.png"
 };
 
 export default function RootLayout({

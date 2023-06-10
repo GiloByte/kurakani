@@ -1,3 +1,4 @@
+"use client";
 import RoomSideBar from "@/components/Room/RoomSideBar";
 import RoomProvider from "@/contexts/RoomContext";
 import SocketProvider from "@/contexts/SocketContext";

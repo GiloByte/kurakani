@@ -15,7 +15,7 @@ function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
     >
       <div>
         <Image
-          src={room.imageUrl}
+          src={room.id === "1" ? "/images/globe.jpg" : room.imageUrl}
           height={50}
           width={50}
           style={{

@@ -1,13 +1,11 @@
 "use client";
 import { useSocket } from "@/contexts/SocketContext";
-import { useUser } from "@/contexts/UserContext";
 import React, { useEffect, useRef } from "react";
 import Avatar from "react-avatar";
 
 function ChatBody({ roomId }: { roomId: string }) {
   const lastMessageRef = useRef<HTMLDivElement>(null);
-  const { messages } = useSocket();
-  const { uuid } = useUser();
+  const { messages, socket } = useSocket();
 
   useEffect(() => {
     lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -16,7 +14,13 @@ function ChatBody({ roomId }: { roomId: string }) {
   return (
     <div className="basis-[85%] overflow-y-scroll p-5 w-full flex flex-col gap-2">
       {messages[roomId]?.map((message: any, index: number) =>
-        message.id === uuid ? (
+        message.socketId === "kurakani" ? (
+          <div className="flex self-center" key={index}>
+            <div className="flex justify-center items-center">
+              <p>{message.text}</p>
+            </div>
+          </div>
+        ) : message.socketId === socket?.id ? (
           <div className="flex self-end" key={index}>
             <div className="flex justify-center items-center px-3 py-1 text-white rounded-full rounded-br-none bg-primary">
               <p className="font-sans">{message.text}</p>

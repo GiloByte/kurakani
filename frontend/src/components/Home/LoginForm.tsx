@@ -2,11 +2,10 @@
 import { useUser } from "@/contexts/UserContext";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { v4 as uuidv4 } from "uuid";
 
 function LoginForm() {
   const [name, setName] = useState<string>();
-  const { setUsername, setUuid } = useUser();
+  const { setUsername } = useUser();
   const router = useRouter();
 
   const handleInputChange = (e: any) => {
@@ -16,7 +15,6 @@ function LoginForm() {
   const onStart = (e: any) => {
     e.preventDefault();
     name && setUsername(name);
-    setUuid(uuidv4());
     router.push("/chat");
   };
   return (

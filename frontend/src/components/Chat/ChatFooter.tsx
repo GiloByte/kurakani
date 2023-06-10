@@ -8,7 +8,7 @@ import { IoMdSend } from "react-icons/io";
 function ChatFooter({ roomId }: { roomId: string }) {
   const [message, setMessage] = useState<string>("");
   const { socket } = useSocket();
-  const { username, uuid } = useUser();
+  const { username } = useUser();
 
   const handleChange = (e: any) => {
     setMessage(e.target.value);
@@ -20,7 +20,6 @@ function ChatFooter({ roomId }: { roomId: string }) {
       socket?.emit("send_message", {
         text: message,
         name: username,
-        id: uuid,
         socketId: socket.id,
         roomId: roomId,
       });

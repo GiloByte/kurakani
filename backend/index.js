@@ -44,19 +44,14 @@ io.on("connection", (socket) => {
   });
 });
 
+const ROOMS = [
+  {
+    title: "Global Chatroom",
+    id: "1",
+  },
+];
+
 app.get("/rooms", (req, res) => {
-  const ROOMS = [
-    {
-      title: "Global Chatroom",
-      id: "1",
-      imageUrl: "https://kriteshtimsina.com.np/assets/kritesh-057690bd.jpg",
-    },
-    {
-      title: "Nepali Guys",
-      id: "2",
-      imageUrl: "https://shreedeshniroula.com.np/images/profile1.jpg",
-    },
-  ];
   res.json(ROOMS);
 });
 

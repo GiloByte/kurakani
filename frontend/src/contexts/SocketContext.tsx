@@ -1,7 +1,6 @@
 "use client";
 import IMessage from "@/interfaces/IMessage";
 import ISocketContext from "@/interfaces/ISocketContext";
-import { BASE_URL } from "@/utils/constants";
 import { createContext, useContext, useEffect, useState } from "react";
 import * as socketIO from "socket.io-client";
 import { useUser } from "./UserContext";
@@ -36,7 +35,7 @@ export default function SocketProvider({
       router.replace("/");
       return;
     }
-    let socket = socketIO.connect(BASE_URL);
+    let socket = socketIO.connect(process.env.NEXT_PUBLIC_BASE_URL!);
     socket.on("receive_message", (data: IMessage) => {
       setMessages((prev) => {
         const newMessages = { ...prev };

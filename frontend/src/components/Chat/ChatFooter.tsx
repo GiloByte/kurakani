@@ -10,10 +10,6 @@ function ChatFooter({ roomId }: { roomId: string }) {
   const { socket } = useSocket();
   const { username } = useUser();
 
-  const handleChange = (e: any) => {
-    setMessage(e.target.value);
-  };
-
   const handleSendMessage = (e: any, message: string) => {
     e.preventDefault();
     if (message.trim()) {
@@ -45,7 +41,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
             value={message}
             className="p-2 w-full h-8 bg-gray-100 rounded-full transition-all focus:outline-none"
             placeholder="Aa"
-            onChange={handleChange}
+            onChange={(e) => setMessage(e.target.value)}
           />
         </form>
       </div>

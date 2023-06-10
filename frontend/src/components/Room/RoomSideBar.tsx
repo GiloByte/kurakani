@@ -9,19 +9,31 @@ import AddRoomPanel from "./AddRoomPanel";
 
 function RoomSideBar() {
   const [showAddRoomPanel, setShowAddRoomPanel] = useState(false);
-  const { rooms } = useRoom();
+  const { rooms, myRooms } = useRoom();
   const { roomUsers } = useSocket();
 
   const hideAddRoomPanel = () => setShowAddRoomPanel(false);
 
   return (
-    <div className="w-20 h-screen border-r-2 sm:w-1/4">
+    <div className="overflow-y-scroll w-20 h-screen border-r-2 sm:w-1/4">
       <p className="px-2 py-5 sm:px-5 h-[56px] text-2xl font-semibold">Rooms</p>
       {rooms.map((room: IRoom, index) => {
         return (
           <RoomCard room={room} users={roomUsers[room.id] ?? []} key={index} />
         );
       })}
+      <p className="px-2 pt-3 text-xl font-semibold sm:px-5">My Rooms</p>
+      <div className="py-1">
+        {myRooms.map((room: IRoom, index) => {
+          return (
+            <RoomCard
+              room={room}
+              users={roomUsers[room.id] ?? []}
+              key={index}
+            />
+          );
+        })}
+      </div>
       <div
         className="flex justify-center items-center p-1 m-2 rounded-lg border-2 cursor-pointer text-primary border-primary hover:bg-primary hover:text-white"
         onClick={() => setShowAddRoomPanel(true)}

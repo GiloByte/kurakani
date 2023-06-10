@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React from "react";
+import Avatar from "react-avatar";
 
 function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
   const { roomId } = useParams();
@@ -14,18 +15,27 @@ function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
       }`}
     >
       <div>
-        <Image
-          src={room.id === "1" ? "/images/globe.jpg" : room.imageUrl}
-          height={50}
-          width={50}
-          style={{
-            objectFit: "cover",
-            height: 50,
-            width: 50,
-            borderRadius: 50,
-          }}
-          alt="profile"
-        />
+        {room.id === "1" ? (
+          <Image
+            src="/images/globe.jpg"
+            height={50}
+            width={50}
+            style={{
+              objectFit: "cover",
+              height: 50,
+              width: 50,
+              borderRadius: 50,
+            }}
+            alt="profile"
+          />
+        ) : (
+          <Avatar
+            name={room.title}
+            round={true}
+            size="50"
+            className="text-sm"
+          />
+        )}
       </div>
       <div>
         <p className="font-medium line-clamp-1">{room.title}</p>

@@ -4,6 +4,8 @@ import ISocketContext from "@/interfaces/ISocketContext";
 import { BASE_URL } from "@/utils/constants";
 import { createContext, useContext, useEffect, useState } from "react";
 import * as socketIO from "socket.io-client";
+import { useUser } from "./UserContext";
+import { useRouter } from "next/navigation";
 
 const intialData: ISocketContext = {
   socket: undefined,
@@ -25,6 +27,13 @@ export default function SocketProvider({
   const [roomUsers, setRoomUsers] = useState({});
   const [socket, setSocket] = useState<socketIO.Socket>();
   const [messages, setMessages] = useState<{ [key: string]: IMessage[] }>({});
+
+  const { username } = useUser();
+  const router = useRouter();
+  if (!username) {
+    router.replace("/");
+    return;
+  }
 
   useEffect(() => {
     let socket = socketIO.connect(BASE_URL);

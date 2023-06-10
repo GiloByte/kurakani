@@ -30,12 +30,12 @@ export default function SocketProvider({
 
   const { username } = useUser();
   const router = useRouter();
-  if (!username) {
-    router.replace("/");
-    return;
-  }
 
   useEffect(() => {
+    if (!username) {
+      router.replace("/");
+      return;
+    }
     let socket = socketIO.connect(BASE_URL);
     socket.on("receive_message", (data: IMessage) => {
       setMessages((prev) => {

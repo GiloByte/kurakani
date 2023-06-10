@@ -8,7 +8,7 @@ const NAV_LINKS = [
   "Features",
   "Desktop App",
   "Privacy & Safety",
-  "For Developers",
+  "Star on GitHub",
 ];
 
 function Navbar() {

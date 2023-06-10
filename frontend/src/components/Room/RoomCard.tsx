@@ -9,7 +9,7 @@ function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
   return (
     <Link
       href={`chat/${room.id}`}
-      className={`flex gap-3 items-center p-2 ${
+      className={`flex gap-3 items-center p-2 flex-col sm:flex-row ${
         room.id === roomId ? "bg-gray-100" : ""
       }`}
     >
@@ -28,7 +28,7 @@ function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
         />
       </div>
       <div>
-        <p className="font-medium">{room.title}</p>
+        <p className="font-medium line-clamp-1">{room.title}</p>
         <p className="text-sm text-slate-400">
           <span className="text-xs">🟢</span> {users.length} online
         </p>

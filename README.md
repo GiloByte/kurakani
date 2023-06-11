@@ -55,16 +55,20 @@ git clone https://github.com/diwash007/kurakani.git
 3. Install NPM packages for frontend and start server
 
 ```sh
-cd frontend && npm install && npm run dev
+cd frontend
+npm install
+npm run dev
 ```
 
-4. Install NPM packages for frontend and start server
+4. Install NPM packages for backend and start server
 
 ```sh
-cd backend && npm install && npm start
+cd backend
+npm install
+npm start
 ```
 
-### Creating A Pull Request
+## Contributing
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)

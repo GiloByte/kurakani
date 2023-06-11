@@ -5,10 +5,7 @@ import Link from "next/link";
 import { AiOutlineMenu } from "react-icons/ai";
 
 const NAV_LINKS = [
-  "Features",
-  "Desktop App",
-  "Privacy & Safety",
-  "Star on GitHub",
+  { title: "Star on GitHub", link: "https://github.com/diwash007/kurakani" },
 ];
 
 function Navbar() {
@@ -20,8 +17,8 @@ function Navbar() {
       <div className="hidden gap-10 font-medium lg:flex">
         {NAV_LINKS.map((item, index) => {
           return (
-            <Link href="#" key={index}>
-              {item}
+            <Link href={item.link} key={index} target="_blank">
+              {item.title}
             </Link>
           );
         })}

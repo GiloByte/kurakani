@@ -2,9 +2,11 @@
 import { useUser } from "@/contexts/UserContext";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ClipLoader } from "react-spinners";
 
 function LoginForm() {
   const [name, setName] = useState<string>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { setUsername } = useUser();
   const router = useRouter();
 
@@ -14,6 +16,7 @@ function LoginForm() {
 
   const onStart = (e: any) => {
     e.preventDefault();
+    setIsLoading(true);
     name && setUsername(name);
     router.push("/chat");
   };
@@ -35,8 +38,15 @@ function LoginForm() {
         </div> */}
       </div>
       <div className="flex gap-5 items-center">
-        <button type="submit" className="btn">
-          Start Kurakani
+        <button
+          type="submit"
+          className="flex justify-center items-center w-40 btn"
+        >
+          {isLoading ? (
+            <ClipLoader color="white" size={20} />
+          ) : (
+            "Start Kurakani"
+          )}
         </button>
       </div>
     </form>

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 const NAV_LINKS = [
   { title: "Star on GitHub", link: "https://github.com/diwash007/kurakani" },
@@ -27,10 +27,22 @@ function Navbar() {
         className="flex gap-10 font-medium lg:hidden"
         onClick={() => setNavbarActive((prev) => !prev)}
       >
-        <AiOutlineMenu size={30} />
+        {navbarActive ? (
+          <AiOutlineClose size={30} />
+        ) : (
+          <AiOutlineMenu size={30} />
+        )}
       </div>
       {navbarActive && (
-        <div className="absolute top-[100px] w-screen h-screen"></div>
+        <div className="absolute top-[100px] bg-white font-medium">
+          {NAV_LINKS.map((item, index) => {
+            return (
+              <Link href={item.link} key={index} target="_blank">
+                {item.title}
+              </Link>
+            );
+          })}
+        </div>
       )}
     </div>
   );

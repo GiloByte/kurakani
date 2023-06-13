@@ -1,16 +1,19 @@
+import { useRoom } from "@/contexts/RoomContext";
 import IRoom from "@/interfaces/IRoom";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React from "react";
 import Avatar from "react-avatar";
+import { ImExit } from "react-icons/im";
 
 function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
   const { roomId } = useParams();
+  const { myRooms, setMyRooms } = useRoom();
   return (
     <Link
       href={`chat/${room.id}`}
-      className={`flex gap-3 items-center p-2 flex-col sm:flex-row ${
+      className={`flex group relative gap-3 items-center p-2 flex-col sm:flex-row ${
         room.id === roomId ? "bg-gray-100" : ""
       }`}
     >
@@ -43,6 +46,16 @@ function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
           <span className="text-xs">🟢</span> {users.length} online
         </p>
       </div>
+      {room.id !== "1" && (
+        <span
+          className="hidden absolute right-3 justify-center items-center p-2 bg-red-500 rounded-full group-hover:flex hover:bg-red-700"
+          onClick={() => {
+            setMyRooms(myRooms.filter((r) => r.id != room.id));
+          }}
+        >
+          <ImExit className="text-white" />
+        </span>
+      )}
     </Link>
   );
 }

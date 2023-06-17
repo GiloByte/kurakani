@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const { Server } = require("socket.io");
 const http = require("http");
-const debugPrint = require('../utils/debugPrint');
+const debugPrint = require("../utils/debugPrint");
 
 app.use(cors());
 const server = http.createServer(app);
@@ -33,6 +33,10 @@ io.on("connection", (socket) => {
 
   socket.on("send_message", (data) => {
     io.emit("receive_message", data);
+  });
+
+  socket.on("typing", (data) => {
+    socket.broadcast.emit("typing_response", data);
   });
 
   socket.on("disconnect", () => {

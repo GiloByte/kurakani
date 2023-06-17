@@ -22,6 +22,11 @@ function ChatFooter({ roomId }: { roomId: string }) {
     }
     setMessage("");
   };
+
+  const handleTyping = () => {
+    socket?.emit("typing", message ? username + " is typing ..." : "");
+  };
+
   return (
     <div className="basis-[8%] border-t-2 p-2 flex items-center gap-4">
       {message.length === 0 && (
@@ -42,6 +47,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
             className="p-2 w-full h-8 bg-gray-100 rounded-full transition-all focus:outline-none"
             placeholder="Aa"
             onChange={(e) => setMessage(e.target.value)}
+            onKeyUp={handleTyping}
           />
         </form>
       </div>

@@ -16,6 +16,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
       socket?.emit("send_message", {
         text: message,
         name: username,
+        time: new Date(),
         socketId: socket.id,
         roomId: roomId,
       });

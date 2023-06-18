@@ -35,7 +35,7 @@ function ChatBody({ roomId }: { roomId: string }) {
           </div>
         ) : (
           <div className="flex gap-2 self-start" key={index}>
-            <div className="self-end">
+            <div className="self-center">
               <Avatar
                 name={message.name}
                 round={true}
@@ -44,15 +44,23 @@ function ChatBody({ roomId }: { roomId: string }) {
               />
             </div>
             <div>
-              <p className="pl-2 text-xs">{message.name}</p>
+              <p className="pl-2 text-sm align-bottom">{message.name}</p>
               <div className="flex justify-center items-center px-3 py-1 bg-gray-200 rounded-full rounded-tl-none">
                 <p className="font-sans">{message.text}</p>
               </div>
+              <p className="py-2 pl-2 text-xs font-light">
+                {new Date(message.time).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </p>
             </div>
           </div>
         )
       )}
-      <div ref={lastMessageRef} className="mt-auto text-slate-500">{typing}</div>
+      <div ref={lastMessageRef} className="mt-auto text-slate-500">
+        {typing}
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useSocket } from "@/contexts/SocketContext";
 import { useUser } from "@/contexts/UserContext";
-import React, { MutableRefObject, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { AiFillPlusCircle, AiFillLike } from "react-icons/ai";
 import { BsImage, BsEmojiSmileFill } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";

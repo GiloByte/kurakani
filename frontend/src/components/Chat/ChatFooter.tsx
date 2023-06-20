@@ -46,7 +46,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
         </>
       )}
       <div className="relative w-full ">
-        <div className="absolute right-0 bottom-10">
+        <div className="absolute -right-8 sm:right-0 bottom-12 ">
           {showEmojiPicker && (
             <Picker
               onEmojiClick={onEmojiPick}

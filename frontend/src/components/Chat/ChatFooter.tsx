@@ -25,12 +25,18 @@ function ChatFooter({ roomId }: { roomId: string }) {
       socket?.emit("send_message", {
         text: message,
         name: username,
+        time: new Date(),
         socketId: socket.id,
         roomId: roomId,
       });
     }
     setMessage("");
   };
+
+  const handleTyping = () => {
+    socket?.emit("typing", message ? username + " is typing ..." : "");
+  };
+
   return (
     <div className="basis-[8%] border-t-2 p-2 flex items-center gap-4">
       {message.length === 0 && (
@@ -61,6 +67,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
             value={message}
             className="w-full h-8 p-2 transition-all bg-gray-100 rounded-full focus:outline-none"
             placeholder="Aa"
+            onKeyUp={handleTyping}
             onChange={(e) => {
               setMessage(e.target.value), setShowEmojiPicker(false);
             }}

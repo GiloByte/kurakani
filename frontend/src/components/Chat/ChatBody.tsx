@@ -19,7 +19,7 @@ function ChatBody({ roomId }: { roomId: string }) {
   }, []);
 
   return (
-    <div className="basis-[85%] overflow-y-scroll p-5 w-full flex flex-col gap-2">
+    <div className="basis-[85%] overflow-y-scroll p-5 w-full flex flex-col gap-2 ">
       {messages[roomId]?.map((message: any, index: number) =>
         message.socketId === "kurakani" ? (
           <div className="flex self-center" key={index}>

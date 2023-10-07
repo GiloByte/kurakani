@@ -56,7 +56,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
         </div>
         <BsEmojiSmileFill
           size={20}
-          className="cursor-pointer absolute top-[6px] right-2 text-primary"
+          className="cursor-pointer absolute top-[6px] right-2 text-primary "
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}
         />
 
@@ -65,7 +65,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
             ref={inputRef}
             type="text"
             value={message}
-            className="w-full h-8 p-2 transition-all bg-gray-100 rounded-full focus:outline-none"
+            className="w-full h-8 p-2 transition-all bg-gray-100 rounded-full focus:outline-none dark:text-black"
             placeholder="Aa"
             onKeyUp={handleTyping}
             onChange={(e) => {

@@ -23,7 +23,7 @@ function RoomSideBar() {
         );
       })}
       <p className="px-2 pt-3 text-lg font-semibold sm:text-xl sm:px-5">My Rooms</p>
-      <div className="py-1">
+      <div className="py-1 ">
         {myRooms.map((room: IRoom, index) => {
           return (
             <RoomCard

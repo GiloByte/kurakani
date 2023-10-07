@@ -13,7 +13,7 @@ function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
   return (
     <Link
       href={`chat/${room.id}`}
-      className={`flex group relative gap-3 items-center p-2 flex-col sm:flex-row ${
+      className={`flex group relative gap-3 items-center p-2 flex-col sm:flex-row dark:bg-bgDark ${
         room.id === roomId ? "bg-gray-100" : ""
       }`}
     >

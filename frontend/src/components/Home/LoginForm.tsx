@@ -17,7 +17,10 @@ function LoginForm() {
   const onStart = (e: any) => {
     e.preventDefault();
     setIsLoading(true);
-    name && setUsername(name);
+    if(name) {
+      localStorage.setItem("name", name);
+      setUsername(name);
+    }
     router.push("/chat");
   };
   return (

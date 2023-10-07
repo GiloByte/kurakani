@@ -11,7 +11,19 @@ const intialData: IUserContext = {
 const UserContext = createContext<IUserContext>(intialData);
 
 export function useUser() {
-  return useContext(UserContext);
+  const context = useContext(UserContext);
+  const storedUsername = typeof window !== "undefined" ? localStorage.getItem("name") : null;
+
+  if (context.username !== "") {
+    return context;
+  } else if (storedUsername) {
+    return {
+      ...context,
+      username: storedUsername,
+    };
+  } else {
+    return context;
+  }
 }
 
 export default function UserProvider({

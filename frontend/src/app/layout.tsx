@@ -2,7 +2,7 @@ import UserProvider from "@/contexts/UserContext";
 import "./globals.css";
 import localFont from "next/font/local";
 import { Metadata } from "next";
-
+import Providers from "@/contexts/Providers";
 const calibre = localFont({
   src: [
     { path: "../../public/fonts/CalibreRegular.otf", weight: "normal" },
@@ -26,9 +26,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+    <Providers>
       <UserProvider>
         <body className={calibre.className}>{children}</body>
       </UserProvider>
+    </Providers> 
     </html>
   );
 }

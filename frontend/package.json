@@ -32,6 +32,9 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@types/uuid": "^9.0.1"
+    "@types/uuid": "^9.0.1",
+    "bufferutil": "^4.0.7",
+    "supports-color": "^8.1.1",
+    "utf-8-validate": "^5.0.10"
   }
 }

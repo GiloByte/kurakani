@@ -15,7 +15,7 @@ function RoomSideBar() {
   const hideAddRoomPanel = () => setShowAddRoomPanel(false);
 
   return (
-    <div className="overflow-y-scroll w-20 h-screen border-r-2 sm:w-1/4">
+    <div className="overflow-y-scroll w-20 h-screen border-r-2 sm:w-1/4 dark:border-r-gray-600">
       <p className="px-2 py-5 sm:px-5 h-[56px] text-xl sm:text-2xl font-semibold">Rooms</p>
       {rooms.map((room: IRoom, index) => {
         return (
@@ -23,7 +23,7 @@ function RoomSideBar() {
         );
       })}
       <p className="px-2 pt-3 text-lg font-semibold sm:text-xl sm:px-5">My Rooms</p>
-      <div className="py-1 ">
+      <div className="py-1">
         {myRooms.map((room: IRoom, index) => {
           return (
             <RoomCard

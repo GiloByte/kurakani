@@ -38,7 +38,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
   };
 
   return (
-    <div className="basis-[8%] border-t-2 p-2 flex items-center gap-4">
+    <div className="basis-[8%] border-t-2 p-2 flex items-center gap-4 dark:border-t-gray-600">
       {message.length === 0 && (
         <>
           <AiFillPlusCircle size={20} className="cursor-pointer text-primary" />
@@ -56,7 +56,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
         </div>
         <BsEmojiSmileFill
           size={20}
-          className="cursor-pointer absolute top-[6px] right-2 text-primary "
+          className="cursor-pointer absolute top-[6px] right-2 text-primary"
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}
         />
 

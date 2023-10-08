@@ -4,12 +4,14 @@ import React, { useRef, useState } from "react";
 import { AiFillPlusCircle, AiFillLike } from "react-icons/ai";
 import { BsImage, BsEmojiSmileFill } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
-import Picker from "emoji-picker-react";
+import Picker, { Theme } from "emoji-picker-react";
+import { useTheme } from "next-themes";
 
 function ChatFooter({ roomId }: { roomId: string }) {
   const [message, setMessage] = useState<string>("");
   const { socket } = useSocket();
   const { username } = useUser();
+  const { theme } = useTheme();
   const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
   const inputRef = useRef<any | null>(null);
 
@@ -49,6 +51,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
         <div className="absolute -right-8 sm:right-0 bottom-12 ">
           {showEmojiPicker && (
             <Picker
+              theme={theme === "dark" ? Theme.DARK : Theme.LIGHT}
               onEmojiClick={onEmojiPick}
               previewConfig={{ showPreview: false }}
             />
@@ -65,7 +68,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
             ref={inputRef}
             type="text"
             value={message}
-            className="w-full h-8 p-2 transition-all bg-gray-100 rounded-full focus:outline-none dark:text-black"
+            className="w-full h-8 p-2 transition-all bg-gray-100 rounded-full focus:outline-none dark:text-black dark:bg-blue-100"
             placeholder="Aa"
             onKeyUp={handleTyping}
             onChange={(e) => {

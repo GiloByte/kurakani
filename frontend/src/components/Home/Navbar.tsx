@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import {BsMoonStars,BsSun} from "react-icons/bs";
 import DarkModeSwitch from "../shared/DarkModeSwitch";
 
 const NAV_LINKS = [
@@ -36,10 +35,15 @@ function Navbar() {
         )}
       </div>
       {navbarActive && (
-        <div className="absolute top-[100px] bg-white dark:bg-bgDark font-medium dark:text-textDark flex items-center justify-between w-[90%]" >
+        <div className="absolute top-[100px] bg-white dark:bg-bgDark font-medium dark:text-textDark flex items-center justify-between w-[90%]">
           {NAV_LINKS.map((item, index) => {
             return (
-              <Link className="mt-2" href={item.link} key={index} target="_blank">
+              <Link
+                className="mt-2"
+                href={item.link}
+                key={index}
+                target="_blank"
+              >
                 {item.title}
               </Link>
             );

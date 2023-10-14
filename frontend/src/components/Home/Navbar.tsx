@@ -34,7 +34,7 @@ function Navbar() {
         )}
       </div>
       {navbarActive && (
-        <div className="absolute top-[80px] right-6 rounded font-medium border-2 border-black pt-2 px-1">
+        <div className="text-white absolute top-[80px] bg-gradient-to-r from-purple-500 to-pink-500 right-6 rounded-full font-medium text-xl pt-2 px-4">
           {NAV_LINKS.map((item, index) => {
             return (
               <Link href={item.link} key={index} target="_blank">

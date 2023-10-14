@@ -24,7 +24,7 @@ function Navbar() {
         })}
       </div>
       <div
-        className="flex gap-10 font-medium lg:hidden"
+        className="flex gap-10 font-medium cursor-pointer lg:hidden"
         onClick={() => setNavbarActive((prev) => !prev)}
       >
         {navbarActive ? (
@@ -34,7 +34,7 @@ function Navbar() {
         )}
       </div>
       {navbarActive && (
-        <div className="absolute top-[100px] bg-white font-medium">
+        <div className="absolute top-[80px] right-6 rounded font-medium border-2 border-black pt-2 px-1">
           {NAV_LINKS.map((item, index) => {
             return (
               <Link href={item.link} key={index} target="_blank">

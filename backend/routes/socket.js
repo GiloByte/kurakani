@@ -13,6 +13,7 @@ const io = new Server(server, {
     origin: process.env.ORIGIN_URL,
     methods: ["GET", "POST"],
   },
+  maxHttpBufferSize: 2e7
 });
 
 let roomUsers = {};

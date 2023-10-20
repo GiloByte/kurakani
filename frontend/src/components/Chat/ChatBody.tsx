@@ -2,6 +2,7 @@
 import { useSocket } from "@/contexts/SocketContext";
 import React, { useEffect, useRef, useState } from "react";
 import Avatar from "react-avatar";
+import ChatImage from "./ChatImage";
 
 function ChatBody({ roomId }: { roomId: string }) {
   const [typing, setTyping] = useState<string>("");
@@ -28,10 +29,11 @@ function ChatBody({ roomId }: { roomId: string }) {
             </div>
           </div>
         ) : message.socketId === socket?.id ? (
-          <div className="flex self-end" key={index}>
-            <div className="flex justify-center items-center px-3 py-1 text-white rounded-full rounded-br-none bg-primary">
+          <div className="flex self-end flex-col items-end" key={index}>
+            {message.text && <div className="flex justify-center items-center px-3 py-1 text-white rounded-full rounded-br-none bg-primary">
               <p className="font-sans">{message.text}</p>
-            </div>
+            </div>}
+            {message.image && <ChatImage imgURL={message.image} />}
           </div>
         ) : (
           <div className="flex gap-2 self-start" key={index}>
@@ -45,9 +47,10 @@ function ChatBody({ roomId }: { roomId: string }) {
             </div>
             <div>
               <p className="pl-2 text-sm align-bottom">{message.name}</p>
-              <div className="flex justify-center items-center px-3 py-1 bg-gray-200 rounded-full rounded-tl-none">
+              {message.text && <div className={`px-3 py-1 bg-gray-200 rounded-full ${message.image ? "rounded-bl-none" : "rounded-tl-none"} w-fit`}>
                 <p className="font-sans">{message.text}</p>
-              </div>
+              </div>}
+              {message.image && <ChatImage imgURL={message.image} />}
               <p className="py-2 pl-2 text-xs font-light">
                 {new Date(message.time).toLocaleTimeString([], {
                   hour: "2-digit",

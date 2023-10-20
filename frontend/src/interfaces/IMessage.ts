@@ -4,4 +4,5 @@ export default interface IMessage {
   id: string;
   socketId: string;
   roomId: string;
+  image?: string;
 }

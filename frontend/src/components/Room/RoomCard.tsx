@@ -13,8 +13,6 @@ import { ImExit } from "react-icons/im";
 function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
   const { roomId } = useParams();
   const { myRooms, setMyRooms } = useRoom();
-  // TEST
-  // adding context data for leave the room button functionality
   const { socket } = useSocket();
   const { username } = useUser();
   const router = useRouter();
@@ -60,7 +58,6 @@ function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
           className="hidden absolute right-3 justify-center items-center p-2 bg-red-500 rounded-full group-hover:flex hover:bg-red-700"
           onClick={(e) => {
             setMyRooms(myRooms.filter((r) => r.id != room.id));
-            // TEST
             // removing user from the room in server UsersState
             socket?.emit("leave_room", { username, roomId: room.id });
             e.preventDefault();

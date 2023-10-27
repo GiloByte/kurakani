@@ -14,16 +14,7 @@ function Page() {
 
   useEffect(() => {
     if (roomUsers[roomId]?.includes(socket?.id)) return;
-    // TEST
-    // this message is now obsolete as it is duplicates message sent by the server. file: backend/routes/socket.js line: 113
-    // socket?.emit("send_message", {
-    //   text: username + " joined the room.",
-    //   socketId: "kurakani",
-    //   roomId: roomId,
-    // });
-
     // adding username to socket emit
-    // socket?.emit("join_room", roomId);
     socket?.emit("join_room", { username, roomId });
   }, []);
 

@@ -1,8 +1,11 @@
+"use client";
 import { useRoom } from "@/contexts/RoomContext";
+import { useSocket } from "@/contexts/SocketContext";
+import { useUser } from "@/contexts/UserContext";
 import IRoom from "@/interfaces/IRoom";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React from "react";
 import Avatar from "react-avatar";
 import { ImExit } from "react-icons/im";
@@ -10,6 +13,12 @@ import { ImExit } from "react-icons/im";
 function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
   const { roomId } = useParams();
   const { myRooms, setMyRooms } = useRoom();
+  // TEST
+  // adding context data for leave the room button functionality
+  const { socket } = useSocket();
+  const { username } = useUser();
+  const router = useRouter();
+
   return (
     <Link
       href={`chat/${room.id}`}
@@ -49,8 +58,14 @@ function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
       {room.id !== "1" && (
         <span
           className="hidden absolute right-3 justify-center items-center p-2 bg-red-500 rounded-full group-hover:flex hover:bg-red-700"
-          onClick={() => {
+          onClick={(e) => {
             setMyRooms(myRooms.filter((r) => r.id != room.id));
+            // TEST
+            // removing user from the room in server UsersState
+            socket?.emit("leave_room", { username, roomId: room.id });
+            e.preventDefault();
+            // moving user out of the chat
+            router.push("/chat");
           }}
         >
           <ImExit className="text-white" />

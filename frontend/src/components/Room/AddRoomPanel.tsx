@@ -29,8 +29,14 @@ function AddRoomPanel({ hideAddRoomPanel }: any) {
   };
 
   return (
-    <div className="flex absolute top-0 left-0 z-20 flex-col justify-center items-center px-6 py-8 mx-auto w-full h-screen backdrop-blur-sm lg:py-0">
-      <div className="relative w-full bg-white rounded-lg shadow-lg md:mt-0 sm:max-w-md xl:p-0">
+    <div
+      className="flex absolute top-0 left-0 z-20 flex-col justify-center items-center px-6 py-8 mx-auto w-full h-screen backdrop-blur-sm lg:py-0"
+      onClick={() => hideAddRoomPanel(true)}
+    >
+      <div
+        className="relative w-full bg-white rounded-lg shadow-lg md:mt-0 sm:max-w-md xl:p-0"
+        onClick={(e) => e.stopPropagation()}
+      >
         <AiFillCloseCircle
           size={30}
           className="absolute -top-2 -right-2 cursor-pointer text-primary"

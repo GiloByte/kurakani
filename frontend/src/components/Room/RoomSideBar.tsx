@@ -6,6 +6,7 @@ import { useRoom } from "@/contexts/RoomContext";
 import { useSocket } from "@/contexts/SocketContext";
 import { BiMessageAdd } from "react-icons/bi";
 import AddRoomPanel from "./AddRoomPanel";
+import ThemeSwitcher from "../ThemeSwitcher";
 
 function RoomSideBar() {
   const [showAddRoomPanel, setShowAddRoomPanel] = useState(false);
@@ -15,8 +16,11 @@ function RoomSideBar() {
   const hideAddRoomPanel = () => setShowAddRoomPanel(false);
 
   return (
-    <div className="overflow-y-scroll w-20 h-screen border-r-2 sm:w-1/4">
-      <p className="px-2 py-5 sm:px-5 h-[56px] text-xl sm:text-2xl font-semibold">Rooms</p>
+    <div className="overflow-y-scroll w-20 h-screen border-r-2 sm:w-1/4 border-gray dark:border-gray-800">
+      <div className='flex items-center justify-between pr-4'>
+        <p className="px-2 py-5 sm:px-5 h-[56px] text-xl sm:text-2xl font-semibold">Rooms</p>
+        <ThemeSwitcher />
+      </div>
       {rooms.map((room: IRoom, index) => {
         return (
           <RoomCard room={room} users={roomUsers[room.id] ?? []} key={index} />

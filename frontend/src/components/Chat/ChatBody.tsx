@@ -47,7 +47,7 @@ function ChatBody({ roomId }: { roomId: string }) {
             </div>
             <div>
               <p className="pl-2 text-sm align-bottom">{message.name}</p>
-              {message.text && <div className={`px-3 py-1 bg-gray-200 rounded-full ${message.image ? "rounded-bl-none" : "rounded-tl-none"} w-fit`}>
+              {message.text && <div className={`px-3 py-1 bg-gray-200 rounded-full ${message.image ? "rounded-bl-none" : "rounded-tl-none"} w-fit dark:bg-gray-800`}>
                 <p className="font-sans">{message.text}</p>
               </div>}
               {message.image && <ChatImage imgURL={message.image} />}
@@ -61,6 +61,7 @@ function ChatBody({ roomId }: { roomId: string }) {
           </div>
         )
       )}
+
       <div ref={lastMessageRef} className="mt-auto text-slate-500">
         {typing}
       </div>

@@ -8,7 +8,7 @@ function ChatHeader({ roomId }: { roomId: string }) {
   const { rooms, myRooms } = useRoom();
   const room = rooms.concat(myRooms).find((room) => room.id === roomId);
   return (
-    <div className="basis-[7%] border-b-2 flex items-center justify-between p-3 font-medium">
+    <div className="basis-[7%] border-b-2 flex items-center justify-between p-3 font-medium border-gray dark:border-gray-800">
       <p className="text-xl">{room?.title}</p>
       <button
         type="submit"

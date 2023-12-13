@@ -80,7 +80,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
         <img src={image} className="w-full h-full object-contain"/>
       </div>
     }
-    <div className="basis-[8%] border-t-2 p-2 flex items-center gap-4">
+    <div className="basis-[8%] border-t-2 p-2 flex items-center gap-4 border-gray dark:border-gray-800">
       {message.length === 0 && (
         <>
           <AiFillPlusCircle size={20} className="cursor-pointer text-primary" />
@@ -119,7 +119,7 @@ function ChatFooter({ roomId }: { roomId: string }) {
             ref={inputRef}
             type="text"
             value={message}
-            className="w-full h-8 p-2 transition-all bg-gray-100 rounded-full focus:outline-none"
+            className="text-black w-full h-8 p-2 transition-all bg-gray-100 rounded-full focus:outline-none"
             placeholder="Aa"
             onKeyUp={handleTyping}
             onChange={(e) => {

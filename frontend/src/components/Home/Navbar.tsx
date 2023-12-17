@@ -36,7 +36,7 @@ function Navbar() {
                   {
                     title &&
                     <Tooltip delayShow={200} anchorSelect={`#${label}${index}`} place="left">
-                     {title}
+                      {title}
                     </Tooltip>
                   }
 
@@ -69,13 +69,34 @@ function Navbar() {
         )}
       </div>
       {navbarActive && (
-        <div className="text-white absolute top-[80px] bg-gradient-to-r from-purple-500 to-pink-500 right-6 rounded-full font-medium text-xl pt-2 px-4">
+        <div className="text-white absolute top-[80px] bg-gradient-to-r from-purple-500 to-pink-500 right-6 rounded-full font-medium text-xl py-2 px-4">
           {NAV_LINKS.map(({ label, title, link, icon, externalPage }, index) => {
             return (
-              <Link title={title} href={link} key={index} target={externalPage ? "_blank" : "_self"}>
-                <FaGithub />
-                {label}
-              </Link>
+              <>
+                {icon ? (
+                    <Link
+                      id={`${label}${index}`}
+                      className="flex gap-5 items-center justify-center"
+                      href={link}
+                      key={index}
+                      target={externalPage ? "_blank" : "_self"}
+                    >
+                      {React.createElement(icon, { className: "w-6 h-6" })}
+                      <span className="pt-1">{label}</span>
+                    </Link>
+                ) : (
+                  <Link
+                    id={`${label}${index}`}
+                    href={link}
+                    key={index}
+                    target={externalPage ? "_blank" : "_self"}
+                  >
+                    {label}
+                  </Link>
+                )}
+              </>
+
+
             );
           })}
         </div>

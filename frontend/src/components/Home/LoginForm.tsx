@@ -20,6 +20,8 @@ function LoginForm() {
     if(name) {
       localStorage.setItem("name", name);
       setUsername(name);
+    } else {
+      
     }
     router.push("/chat");
   };
@@ -28,7 +30,7 @@ function LoginForm() {
       <div className="flex flex-col gap-3">
         <input
           type="text"
-          className="px-4 py-2 w-80 h-10 bg-gray-100 rounded-full focus:outline-none focus:border focus:border-primary focus:bg-gray-50 focus:placeholder-gray-400/60 placeholder:text-sm"
+          className="px-6 py-6 text-lg text-gray-600 w-80 h-10 bg-gray-100 border-gray-[rgba(0,0,0,.2)] rounded-full focus:outline-none border focus:border-primary focus:bg-gray-50 focus:placeholder-gray-400/60 placeholder:text-base"
           placeholder="Display Name"
           onChange={handleInputChange}
           minLength={3}
@@ -40,10 +42,10 @@ function LoginForm() {
           <p className="font-light">Keep me signed in</p>
         </div> */}
       </div>
-      <div className="flex gap-5 items-center">
+      <div className="flex  gap-5 items-center">
         <button
           type="submit"
-          className="flex justify-center items-center w-40 btn"
+          className="flex  justify-center items-center w-40 btn"
         >
           {isLoading ? (
             <ClipLoader color="white" size={20} />

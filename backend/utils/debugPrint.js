@@ -1,4 +1,4 @@
 function debugPrint(message) {
-  if (JSON.parse(process.env.DEBUG)) console.log(message);
+  if ( process.env.DEBUG === "true") console.log(message);
 }
 module.exports = debugPrint;

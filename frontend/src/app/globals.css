@@ -8,6 +8,6 @@ input {
 
 @layer components {
   .btn {
-    @apply px-5 pt-1 h-10 text-lg font-bold text-white rounded-full bg-primary hover:bg-secondary;
+    @apply px-4 pt-1 h-10 text-lg font-semibold text-white rounded-full bg-primary hover:bg-secondary transition duration-300;
   }
 }

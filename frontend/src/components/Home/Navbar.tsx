@@ -3,23 +3,58 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { FaGithub } from "react-icons/fa";
+import { Tooltip } from 'react-tooltip'
 
 const NAV_LINKS = [
-  { title: "Star on GitHub", link: "https://github.com/diwash007/kurakani" },
+  { icon: FaGithub, label: "Github", title: "Star on GitHub", link: "https://github.com/diwash007/kurakani", externalPage: true },
 ];
+
 
 function Navbar() {
   const [navbarActive, setNavbarActive] = useState(false);
 
   return (
-    <div className="flex fixed justify-between items-center px-5 lg:px-36 w-screen h-[100px] bg-white">
+    <div className="flex justify-between items-center px-5 lg:px-36 h-[100px] bg-white">
       <Image src="/images/logo.png" alt="logo" height={60} width={80} />
       <div className="hidden gap-10 font-medium lg:flex">
-        {NAV_LINKS.map((item, index) => {
+        {NAV_LINKS.map(({ label, title, link, icon, externalPage }, index) => {
           return (
-            <Link href={item.link} key={index} target="_blank">
-              {item.title}
-            </Link>
+            <>
+              {icon ? (
+                <>
+                  <Link
+                    id={`${label}${index}`}
+                    className="flex flex-col items-center"
+                    href={link}
+                    key={index}
+                    target={externalPage ? "_blank" : "_self"}
+                  >
+                    {React.createElement(icon, { className: "w-10 h-10" })}
+                    {label}
+                  </Link>
+                  {
+                    title &&
+                    <Tooltip delayShow={200} anchorSelect={`#${label}${index}`} place="left">
+                      {title}
+                    </Tooltip>
+                  }
+
+                </>
+
+              ) : (
+                <Link
+                  id={`${label}${index}`}
+                  href={link}
+                  key={index}
+                  target={externalPage ? "_blank" : "_self"}
+                >
+                  {label}
+                </Link>
+              )}
+            </>
+
+
           );
         })}
       </div>
@@ -34,12 +69,34 @@ function Navbar() {
         )}
       </div>
       {navbarActive && (
-        <div className="text-white absolute top-[80px] bg-gradient-to-r from-purple-500 to-pink-500 right-6 rounded-full font-medium text-xl pt-2 px-4">
-          {NAV_LINKS.map((item, index) => {
+        <div className="text-white absolute top-[80px] bg-gradient-to-r from-purple-500 to-pink-500 right-6 rounded-full font-medium text-xl py-2 px-4">
+          {NAV_LINKS.map(({ label, title, link, icon, externalPage }, index) => {
             return (
-              <Link href={item.link} key={index} target="_blank">
-                {item.title}
-              </Link>
+              <>
+                {icon ? (
+                    <Link
+                      id={`${label}${index}`}
+                      className="flex gap-5 items-center justify-center"
+                      href={link}
+                      key={index}
+                      target={externalPage ? "_blank" : "_self"}
+                    >
+                      {React.createElement(icon, { className: "w-6 h-6" })}
+                      <span className="pt-1">{label}</span>
+                    </Link>
+                ) : (
+                  <Link
+                    id={`${label}${index}`}
+                    href={link}
+                    key={index}
+                    target={externalPage ? "_blank" : "_self"}
+                  >
+                    {label}
+                  </Link>
+                )}
+              </>
+
+
             );
           })}
         </div>

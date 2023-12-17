@@ -2,6 +2,7 @@ import UserProvider from "@/contexts/UserContext";
 import "./globals.css";
 import localFont from "next/font/local";
 import { Metadata } from "next";
+import 'react-tooltip/dist/react-tooltip.css'
 
 const calibre = localFont({
   src: [

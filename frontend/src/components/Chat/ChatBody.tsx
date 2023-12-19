@@ -62,7 +62,7 @@ function ChatBody({ roomId }: { roomId: string }) {
         )
       )}
 
-      <div ref={lastMessageRef} className="mt-auto text-slate-500">
+      <div ref={lastMessageRef} data-testid="lastMessageRef" className="mt-auto text-slate-500">
         {typing}
       </div>
     </div>

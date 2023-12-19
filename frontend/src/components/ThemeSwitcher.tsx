@@ -26,14 +26,14 @@ const ThemeSwitcher = () => {
 
     if(currentTheme ==="dark"){
       return (
-        <SunIcon className="w-6 h-6 text-yellow-500 " role="button" onClick={() =>
+        <SunIcon data-testid="sun-icon" className="w-6 h-6 text-yellow-500 " role="button" onClick={() =>
          setTheme('light')} />
       )
     }
 
     else {
       return (
-        <MoonIcon className="w-6 h-6 text-gray-900" role="button" onClick={() =>
+        <MoonIcon data-testid="moon-icon" className="w-6 h-6 text-gray-900" role="button" onClick={() =>
          setTheme('dark')} />
       )
     }

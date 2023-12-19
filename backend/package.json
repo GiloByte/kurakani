@@ -10,10 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.3.10",
+    "chai-http": "^4.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
+    "mocha": "^10.2.0",
     "nodemon": "^2.0.22",
+    "sinon": "^17.0.1",
     "socket.io": "^4.6.2"
   }
 }

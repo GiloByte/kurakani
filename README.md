@@ -56,16 +56,16 @@ git clone https://github.com/diwash007/kurakani.git
 
 ```sh
 cd frontend
-npm install
-npm run dev
+yarn
+yarn dev
 ```
 
 4. Install NPM packages for backend and start server
 
 ```sh
 cd backend
-npm install
-npm start
+yarn
+yarn start
 ```
 
 ## Contributing

@@ -15,6 +15,7 @@
     "@types/socket.io": "^3.0.2",
     "@types/socket.io-client": "^3.0.0",
     "autoprefixer": "10.4.14",
+    "core-js-pure": "^3.35.0",
     "emoji-picker-react": "^4.4.9",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",

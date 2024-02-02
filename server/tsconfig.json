@@ -1,0 +1,19 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": ["es2017"],
+    "types": ["node"],
+    "module": "es6",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "declaration": true,
+    "outDir": "es6",
+    "sourceMap": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["es6", "node_modules", "**/*.spec.ts"]
+}

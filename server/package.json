@@ -1,0 +1,19 @@
+{
+  "name": "@kurakani/server",
+  "description": "Server for kurakani platform.",
+  "version": "2.0.0",
+  "license": "GPL-3.0-or-later",
+  "main": "es6/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx --watch src/index.ts",
+    "start": "node es6/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "tsx": "^4.7.0"
+  }
+}

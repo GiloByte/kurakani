@@ -1,0 +1,11 @@
+{
+  "name": "kurakani",
+  "description": "Platform for you to hangout with yourself and with your friends.",
+  "version": "2.0.0",
+  "license": "GPL-3.0-or-later",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ]
+}

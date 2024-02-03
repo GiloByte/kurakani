@@ -9,3 +9,75 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  username   String   @unique
+  email      String   @unique
+  password   String?
+  role       UserRole @default(USER)
+  exp        BigInt
+  status     String?
+  credits    BigInt
+  token      String   @unique
+  created_at DateTime
+
+  joined_rooms   UserOnRoom[]
+  admin_on_rooms AdminOnRoom[]
+
+  @@map("users")
+}
+
+model Room {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  points      BigInt
+  capacity    Int
+  locked      Boolean
+  created_at  DateTime
+
+  users         UserOnRoom[]
+  admins        AdminOnRoom[]
+  announcements Announcement[]
+
+  @@map("rooms")
+}
+
+model UserOnRoom {
+  room    Room @relation(fields: [room_id], references: [id])
+  room_id Int
+  user    User @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  @@id([room_id, user_id])
+  @@map("users_on_rooms")
+}
+
+model AdminOnRoom {
+  room       Room     @relation(fields: [room_id], references: [id])
+  room_id    Int
+  user       User     @relation(fields: [user_id], references: [id])
+  user_id    Int
+  created_at DateTime
+
+  @@id([room_id, user_id])
+  @@map("admins_on_rooms")
+}
+
+model Announcement {
+  id         Int      @id @default(autoincrement())
+  title      String
+  body       String
+  created_at DateTime
+
+  room    Room @relation(fields: [room_id], references: [id])
+  room_id Int
+
+  @@map("announcements")
+}

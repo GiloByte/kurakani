@@ -25,7 +25,7 @@ model User {
   status     String?
   credits    BigInt
   token      String   @unique
-  created_at DateTime
+  created_at DateTime @default(now())
 
   joined_rooms   UserOnRoom[]
   admin_on_rooms AdminOnRoom[]

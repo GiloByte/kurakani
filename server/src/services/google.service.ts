@@ -1,7 +1,6 @@
 import { OAuth2Client } from 'google-auth-library';
 
-// TODO: enter client ID
-const CLIENT_ID = '';
+const CLIENT_ID = process.env.GOOGLE_AUTH_CLIENT_ID;
 const client = new OAuth2Client(CLIENT_ID);
 
 export async function googleVerify(token: string) {

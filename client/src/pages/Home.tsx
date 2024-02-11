@@ -1,6 +1,11 @@
 import { GoogleLogin } from '@react-oauth/google';
+import { useUser } from '../contexts';
+import { useNavigate } from 'react-router-dom';
 
 export function Home() {
+  const navigate = useNavigate();
+  const { setUser } = useUser();
+
   return (
     <>
       <nav className="flex justify-between items-center px-5 lg:px-36 h-[100px] bg-white">
@@ -21,8 +26,20 @@ export function Home() {
             </div>
 
             <GoogleLogin
-              onSuccess={credentialResponse => {
-                console.log(credentialResponse);
+              onSuccess={async credentialResponse => {
+                fetch('/api/auth/google', {
+                  body: JSON.stringify({ credential: credentialResponse.credential }),
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                }).then(async response => {
+                  const _user = await response.json();
+
+                  setUser(_user);
+                  localStorage.setItem('user', JSON.stringify(_user));
+                  navigate('/u/lobby');
+                });
               }}
               onError={() => {
                 console.log('Login Failed');

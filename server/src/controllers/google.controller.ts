@@ -24,10 +24,12 @@ export async function googleAuthController(req: Request<any, any, GoogleAuthPayl
       });
 
       res.json(user);
+      return;
     }
 
     // Login Flow
     res.json(userFromDB);
+    return;
   } catch (err) {
     res.status(401).send({ error: true, message: err.message });
   }

@@ -15,7 +15,7 @@ export async function googleAuthController(req: Request<any, any, GoogleAuthPayl
       // TODO: generate an unique username
       const user = await prisma.user.create({
         data: {
-          username: '',
+          username: userProfile.email,
           email: userProfile.email,
           credits: 0,
           exp: 0,

@@ -2,10 +2,17 @@ import { GoogleLogin } from '@react-oauth/google';
 import { User, useUser } from '../contexts';
 import { useNavigate } from 'react-router-dom';
 import { fetchApi } from '../lib';
+import { useEffect } from 'react';
 
 export function Home() {
   const navigate = useNavigate();
-  const { setUser } = useUser();
+  const { user, setUser } = useUser();
+
+  useEffect(() => {
+    if (user && user.token) {
+      navigate('/u/lobby');
+    }
+  }, [user, navigate]);
 
   return (
     <>

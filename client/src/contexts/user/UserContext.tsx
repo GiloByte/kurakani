@@ -1,12 +1,11 @@
-import React, { createContext, useEffect } from 'react';
-import { PropsWithChildren, useState } from 'react';
-import { User, emptyUser } from './User';
+import React, { PropsWithChildren, createContext, useEffect, useState } from 'react';
+import { User } from './User';
 
 export const UserContext = createContext<{
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }>({
-  user: emptyUser,
+  user: null,
   setUser: () => {},
 });
 
@@ -14,21 +13,18 @@ export function UserProvider({ children }: PropsWithChildren) {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const user = localStorage.getItem('user');
-    console.log('user from storage', user);
-    if (user) {
-      const parsed = JSON.parse(user);
-      if (parsed.token) {
-        setUser(parsed);
+    const userFromStorage = localStorage.getItem('user');
+    if (userFromStorage) {
+      try {
+        const parsed = JSON.parse(userFromStorage);
+        if (parsed.token) {
+          setUser(parsed);
+        }
+      } catch (err: any) {
+        console.log(err.message);
       }
-    } else {
-      setUser(emptyUser);
     }
   }, []);
-
-  console.log('user', user);
-
-  if (!user) return;
 
   return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
 }

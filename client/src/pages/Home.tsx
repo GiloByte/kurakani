@@ -1,6 +1,7 @@
 import { GoogleLogin } from '@react-oauth/google';
-import { useUser } from '../contexts';
+import { User, useUser } from '../contexts';
 import { useNavigate } from 'react-router-dom';
+import { fetchApi } from '../lib';
 
 export function Home() {
   const navigate = useNavigate();
@@ -27,19 +28,21 @@ export function Home() {
 
             <GoogleLogin
               onSuccess={async credentialResponse => {
-                fetch('/api/auth/google', {
-                  body: JSON.stringify({ credential: credentialResponse.credential }),
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
-                }).then(async response => {
-                  const _user = await response.json();
+                try {
+                  const _user = await fetchApi<User>('/api/auth/google', {
+                    body: JSON.stringify({ credential: credentialResponse.credential }),
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                  });
 
                   setUser(_user);
                   localStorage.setItem('user', JSON.stringify(_user));
                   navigate('/u/lobby');
-                });
+                } catch (err: any) {
+                  console.log(err.message);
+                }
               }}
               onError={() => {
                 console.log('Login Failed');

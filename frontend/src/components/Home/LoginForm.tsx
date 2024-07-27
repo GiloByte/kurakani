@@ -18,12 +18,14 @@ function LoginForm() {
     e.preventDefault();
     setIsLoading(true);
     if(name) {
-      localStorage.setItem("name", name);
-      setUsername(name);
-    } else {
-      
-    }
-    router.push("/chat");
+      if (name.trim().length <3)  {
+        setIsLoading(false);
+      } else {
+        localStorage.setItem("name", name);
+        setUsername(name);
+        router.push("/chat");
+      }
+    } 
   };
   return (
     <form className="flex flex-col gap-3" onSubmit={onStart}>
